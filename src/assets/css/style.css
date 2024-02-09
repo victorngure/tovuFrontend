@@ -1,0 +1,38 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.custom-bg-gray {
+    background-color: #FAFAFA;
+    border: #dee2e6 solid 1px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-upload-container {
+    border: #dee2e6 solid 1px;
+    text-align: center;
+    height: 80px;
+}
+
+#fileInput {
+    display: none;
+}
+
+#uploadButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.custom-input-border {
+    border: rgb(222, 226, 230) solid 1px;
+}
+
+.custom-text-muted {
+    color: #6c757d;
+}
+
+.px-8 {
+    padding-left: 64px;
+    padding-right: 64px;
+}
