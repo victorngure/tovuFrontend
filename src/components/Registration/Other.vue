@@ -43,14 +43,14 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            selectedSource: 'Tovu Sacco Staff',
+            selectedSource: null,
             referralSources: ['Social Media', 'A Friend', 'Tovu Sacco Staff'],
-            staffName: "Test staff",
+            staffName: null,
 
-            selectedReason: 'Save to get a Loan',
+            selectedReason: null,
             reasons: ['Save Only', 'Save to get a Loan'],
 
-            selectedLoanType: 'Other Loan',
+            selectedLoanType: null,
             loanTypes: ['Business Working Capital', 'Land Asset Financing', 'Motor Vehicle Asset Financing', 'School Fees Loan', 'Emergency Loan', 'Other Loan'],
         };
     },

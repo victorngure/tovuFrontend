@@ -54,15 +54,15 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            kinName: "Test Kin",
-            relationship: "Father",
+            kinName: null,
+            relationship: null,
 
-            phoneNumber: "0701969007",
+            phoneNumber: null,
 
             selectedIdentification: 'National Id',
             identificationDocuments: ['National Id', 'Passport'],
 
-            nationalId: "123",
+            nationalId: null,
             passportNumber: null,
         };
     },

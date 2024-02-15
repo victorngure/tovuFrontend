@@ -140,10 +140,10 @@ export default {
                     that.loading = true
                     that.paymentReference = response.data.paymentReference
 
-                    that.interval = setInterval(
-                        () => that.checkPaymentStatus(),
-                        5000
-                    )
+                    // that.interval = setInterval(
+                    //     () => that.checkPaymentStatus(),
+                    //     5000
+                    // )
                 })
                 .catch((error) => {
                     that.showError(error)
@@ -192,9 +192,11 @@ export default {
         retryPayment() {
             this.paymentStatus = null
             this.loading = false
+            this.paymentStatus = null2
         },
 
         onModalHidden() {
+            this.loading = false
             this.modal = false
             this.paymentStatus = null
             clearInterval(this.interval) 

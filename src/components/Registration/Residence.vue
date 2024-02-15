@@ -43,13 +43,13 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            town: "Nairobi",
+            town: null,
 
             residenceTypes: ["Rented", "Owned"],
-            selectedResidenceType: "Rented",
+            selectedResidenceType: null,
 
-            estate: "ABC",
-            houseNumber: "123",
+            estate: null,
+            houseNumber: null,
         };
     },
 

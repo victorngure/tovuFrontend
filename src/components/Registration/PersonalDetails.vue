@@ -100,24 +100,24 @@ import { mapMutations, mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            customerName: "Test user",
+            customerName: null,
             tradingAs: null,
 
-            dob: "1996-01-01",
+            dob: null,
             sex: ["Male", "Female"],
-            selectedSex: "Male",
+            selectedSex: null,
 
-            phoneNumber: "254701969007",
-            email: "victorngure@gmail.com",
+            phoneNumber: null,
+            email: null,
 
             maritalStatus: ["Single", "Married", "Other"],
-            selectedMaritalStatus: "Single",
+            selectedMaritalStatus: null,
 
             selectedIdentification: 'National Id',
             identificationDocuments: ['National Id', 'Passport'],
 
-            kraPin: "A010",
-            nationalId: "123",
+            kraPin: null,
+            nationalId: null,
             passportNumber: null,
 
             fileSelectLabel: "Select a File",
