@@ -49,7 +49,7 @@ export default {
             totalPages: 0,
 
             customers: null,
-            fields: ["customerName", "sex", "phoneNumber", "email", "createdAt"],
+            fields: ["customerName", "sex", "phoneNumber", "nationalId", "createdAt"],
         }
     },
     created() {

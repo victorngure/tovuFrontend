@@ -23,7 +23,9 @@ let APIM = function() {
       console.log(error.response.status)
 
       if (error.response.status === 401) {  
-        router.push('/login')
+        if(router.currentRoute.fullPath != '/login') {
+          router.push('/login')
+        }        
       }
       return Promise.reject(error)
     }

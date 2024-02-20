@@ -95,14 +95,6 @@ export default {
     },
 
     methods: {
-        changeRadio(e) {
-            console.log(this.selectedIdentification)
-        },
-
-        handleFileSelect(e) {
-
-        },
-
         next() {            
             this.step += 1
         },

@@ -11,6 +11,7 @@
                     <b-nav-item href="#" @click="navigate('payments')" :active="currentPage == 'Payments'">Payments</b-nav-item>
                     <b-nav-item href="#" @click="navigate('customers')" :active="currentPage == 'Customers'">Customers</b-nav-item>
                     <b-nav-item href="#" @click="navigate('leads')" :active="currentPage == 'Leads'">Leads</b-nav-item>
+                    <b-nav-item href="#" @click="navigate('login')" :active="currentPage == 'Logout'">Logout</b-nav-item>
                     
                 </b-navbar-nav>
             </b-collapse>

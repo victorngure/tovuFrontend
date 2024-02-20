@@ -18,7 +18,6 @@
                                     <b-dropdown-item href="#" @click="showModal(row.item)">View Details</b-dropdown-item>
                                 </b-dropdown>
                             </div>
-
                         </template>
 
                         <template #table-busy>
@@ -101,6 +100,13 @@
                                         </template>
                                     </b-col>
                                 </b-row>
+
+                                <b-row>
+                                    <b-col>
+                                        <p class="fw-bold mb-2">Occupation</p>
+                                        <p>{{ selectedCustomer.occupation }}</p>
+                                    </b-col>
+                                </b-row>
                             </b-card>
                         </div>
                     </b-tab>
@@ -110,16 +116,29 @@
                             <b-card class="custom-card" v-if="selectedCustomer != null">
                                 <b-row>
                                     <b-col>
-                                        <p class="fw-bold mb-2">Residence Type</p>
-                                        <p>{{ selectedCustomer.residenceType }}</p>
+                                        <p class="fw-bold mb-2">Country</p>
+                                        <p>{{ selectedCustomer.country }}</p>
                                     </b-col>
+
                                     <b-col>
-                                        <p class="fw-bold mb-2">Estate</p>
-                                        <p>{{ selectedCustomer.estate }}</p>
-                                    </b-col>
+                                        <p class="fw-bold mb-2">Town/City</p>
+                                        <p>{{ selectedCustomer.residence }}</p>
+                                    </b-col>                                    
                                 </b-row>
 
                                 <b-row>
+                                    <b-col>
+                                        <p class="fw-bold mb-2">Residence Type</p>
+                                        <p>{{ selectedCustomer.residenceType }}</p>
+                                    </b-col>
+
+                                    <b-col>
+                                        <p class="fw-bold mb-2">Estate</p>
+                                        <p>{{ selectedCustomer.estate }}</p>
+                                    </b-col>                                
+                                </b-row>
+
+                                <b-row>                                   
                                     <b-col>
                                         <p class="fw-bold mb-2">House Number</p>
                                         <p>{{ selectedCustomer.houseNumber }}</p>
@@ -140,25 +159,6 @@
                                     <b-col>
                                         <p class="fw-bold mb-2">Relationship</p>
                                         <p>{{ selectedCustomer.kinRelationship }}</p>
-                                    </b-col>
-                                </b-row>
-
-                                <b-row>
-                                    <b-col>
-                                        <p class="fw-bold mb-2">Identification Document</p>
-                                        <p>{{ selectedCustomer.kinIdentificationDocument }}</p>
-                                    </b-col>
-
-                                    <b-col>
-                                        <template v-if="selectedCustomer.kinIdentificationDocument == 'National Id'">
-                                            <p class="fw-bold mb-2">National Id</p>
-                                            <p>{{ selectedCustomer.kinNationalId }}</p>
-                                        </template>
-
-                                        <template v-else>
-                                            <p class="fw-bold mb-2">Passport Number</p>
-                                            <p>{{ selectedCustomer.kinPassport }}</p>
-                                        </template>
                                     </b-col>
                                 </b-row>
 
@@ -203,7 +203,7 @@
                                             <b-row>
                                                 <b-col>
                                                     <p class="fw-bold mb-2">Amount</p>
-                                                    <p>{{ payment.amount }}</p>
+                                                    <p>KSH. {{ payment.amount }}</p>
                                                 </b-col>
                                             </b-row>
                                         </b-card>
@@ -282,7 +282,7 @@ export default {
             totalPages: 0,
 
             customers: null,
-            fields: ["customerName", "sex", "phoneNumber", "email", "createdAt", "action"],
+            fields: ["customerName", "sex", "phoneNumber", "nationalId", "createdAt", "action"],
 
             sidebar: false,
             selectedCustomer: null,

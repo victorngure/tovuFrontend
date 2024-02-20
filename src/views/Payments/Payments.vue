@@ -13,6 +13,10 @@
                     <b-table bordered striped hover outlined :fields="fields" :items="payments" responsive :busy="isBusy"
                         show-empty ref="table">
 
+                        <template #cell(amount)="row">
+                            KSH {{ row.item.amount }}
+                        </template>
+
                         <template #table-busy>
                             <div class="text-center my-2">
                                 <b-spinner class="align-middle"></b-spinner>

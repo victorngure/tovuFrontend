@@ -17,9 +17,10 @@
                     </b-form-group>
 
                     <div class="px-8 mt-4">
-                        <b-button variant="primary" class="btn-block" @click="submit()" :disabled="submitBtn">Sign In</b-button>
+                        <b-button variant="primary" class="btn-block" @click="submit()" :disabled="submitBtn">Sign
+                            In</b-button>
                         <p class="text-decoration-underline text-center">Forgot Password?</p>
-                    </div>                    
+                    </div>
                 </b-card>
             </div>
         </div>
@@ -39,8 +40,8 @@ export default {
 
     data() {
         return {
-            email: "victorngure@gmail.com",
-            password: "secret",
+            email: null,
+            password: null,
             submitBtn: false,
         };
     },
@@ -78,14 +79,23 @@ export default {
                     that.$router.push("dashboard")
                 })
                 .catch((error) => {
-                    that.showError(error)
-                    that.submitBtn = false
+                    if (error.response) {
+                        let errorCode = error.response.status
+                        that.submitBtn = false
+
+                        if (errorCode == 401) {
+                            that.showError("The credentials you provided are incorrect. Please try again")
+                        }
+                        else {
+                            that.showError("An error occured during login.")
+                        }
+                    }
                 })
         },
 
         clearData() {
             window.localStorage.clear()
-            
+
             this.setLoggedinUser(null)
             this.setAuthenticationStatus(null)
         },

@@ -14,9 +14,17 @@ import Payments from '@/views/Payments/Payments'
 
 import Leads from '@/views/Customers/Leads'
 
+import Success from '@/views/Registration/Success'
+
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  }, 
+
   {
     path: '/leads',
     name: 'leads',
@@ -37,16 +45,16 @@ const routes = [
     name: 'dashboard',
     component: Dashboard
   }, 
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  }, 
 
   {
     path: '/register',
     name: 'register',
     component: Register
+  }, 
+  {
+    path: '/register/success',
+    name: 'register-success',
+    component: Success
   }, 
 
   {
@@ -61,5 +69,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router

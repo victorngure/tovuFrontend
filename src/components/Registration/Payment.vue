@@ -20,7 +20,11 @@
             </b-row>
 
             <div class="float-right mt-4">
-                <b-button class="px-4" variant="primary" @click="showModal()">Pay Now</b-button>
+                <b-button-group class="float-right" size="sm">
+                    <b-button class="px-2 mt-2 mr-1" @click="back()">Back</b-button>
+                    <b-button class="px-4 mt-2" variant="primary" @click="showModal()">Pay Now</b-button>
+                </b-button-group>
+                
             </div>
         </b-card>
 
@@ -42,19 +46,25 @@
                             <b-form-input type="number" v-model="phoneNumber"></b-form-input>
                         </b-form-group>
 
-                        <small class="text-muted text-center mt-2">
-                            By clicking proceeding with payment, you agree to our terms and conditions.
-                        </small>
+                        <div class="d-flex justify-content-center" v-if="checkbox">
+                            <b-button class="mt-4" variant="primary" :disabled="submitBtn" @click="submitPayment()">{{ btnText }}</b-button>
+                        </div>                 
 
-                        <b-button class="mt-4" variant="primary" :disabled="submitBtn" @click="submitPayment()">{{ btnText
-                        }}</b-button>
+                        <div class="mt-4"><hr class="my-0" />       
+                            <b-form-checkbox v-model="checkbox" class="text-muted mt-2"> 
+                                <small class="">
+                                    By proceeding with the payment of Ksh 1000 as a non-refundable membership registration fee, 
+                                    you confirm your agreement to abide by the terms and conditions of TOVU SACCO membership
+                                </small>
+                            </b-form-checkbox>
+                        </div>
                     </div>
                 </b-overlay>
             </template>
 
             <template v-else-if="paymentStatus == 'Success'">
                 <div class="d-flex justify-content-center">
-                    <img src="@/assets/img/success.png" width="80px"/>                    
+                    <img src="@/assets/img/success.png" width="80px" />
                 </div>
 
                 <p class="text-center text-muted mt-4">Your payment has been received successfully!</p>
@@ -62,7 +72,7 @@
 
             <template v-else-if="paymentStatus == 'Error'">
                 <div class="d-flex justify-content-center">
-                    <img src="@/assets/img/error.png" width="80px"/>                    
+                    <img src="@/assets/img/error.png" width="80px" />
                 </div>
 
                 <p class="text-center text-muted mt-4">
@@ -71,7 +81,7 @@
                 </p>
 
                 <div class="d-flex justify-content-center">
-                    <b-button variant="secondary" @click="retryPayment()">Retry Payment</b-button>                
+                    <b-button variant="secondary" @click="clear()">Retry Payment</b-button>
                 </div>
             </template>
         </b-modal>
@@ -97,7 +107,8 @@ export default {
             interval: null,
             count: 0,
             paymentStatus: null,
-            paymentStatusDescription: null
+            paymentStatusDescription: null,
+            checkbox: true,
         };
     },
 
@@ -140,14 +151,14 @@ export default {
                     that.loading = true
                     that.paymentReference = response.data.paymentReference
 
-                    // that.interval = setInterval(
-                    //     () => that.checkPaymentStatus(),
-                    //     5000
-                    // )
+                    that.interval = setInterval(
+                        () => that.checkPaymentStatus(),
+                        5000
+                    )
                 })
                 .catch((error) => {
                     that.showError(error)
-                    that.submitBtn = false
+                    that.clear()
                 })
         },
 
@@ -162,16 +173,16 @@ export default {
                     .then((response) => {
                         if (response.data == "PENDING") {
                             if (that.count > 10) {
-                                clearInterval(that.interval) 
-                                that.paymentStatus = "Error"                               
+                                clearInterval(that.interval)
+                                that.paymentStatus = "Error"
                             }
-                        } 
+                        }
 
                         else if (response.data == "SUCCESS") {
-                            clearInterval(that.interval) 
-                            that.paymentStatus = "Success"
-                        } 
-                        
+                            clearInterval(that.interval)
+                            that.$router.push("/register/success")
+                        }
+
                         else {
                             clearInterval(that.interval);
                             that.paymentStatus = "Error"
@@ -189,17 +200,24 @@ export default {
             }
         },
 
-        retryPayment() {
-            this.paymentStatus = null
+        clear() {
+            this.paymentStatus = null            
+            this.btnText = "Request Payment"
+            this.submitBtn = false
             this.loading = false
-            this.paymentStatus = null2
+
+            clearInterval(this.interval)
+        },
+
+        back() {
+            this.$emit('previous')
         },
 
         onModalHidden() {
-            this.loading = false
             this.modal = false
-            this.paymentStatus = null
-            clearInterval(this.interval) 
+            this.clear()
+
+            clearInterval(this.interval)
         }
     }
 }

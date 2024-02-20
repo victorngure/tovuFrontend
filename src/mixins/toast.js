@@ -15,13 +15,17 @@ export default {
             }
             else {
                 if (error.response) {
-                    content = error.response.data
-                } 
-                else if (error.request) {
-                    content = 'No response received from the server.'
-                } 
-                else {
-                    content = 'An error occurred while making the request.'
+                    let errorCode = error.response.status   
+
+                    if(errorCode == 401) {
+                        content = "Your session has expired. Please login."
+                    }
+                    else if(errorCode == 404) {
+                        content = "There was an error with your request. Please try again"
+                    } 
+                    else {
+                        content = "Server error. Please try again later"
+                    }
                 }
             }
             

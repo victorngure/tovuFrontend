@@ -13,7 +13,6 @@
             <div class="d-flex justify-content-center mt-4">
                 <b-button class="px-4 mt-4" variant="primary" @click="register()">Register Now</b-button>
             </div>
-            
         </div>
     </div>
 </template>
